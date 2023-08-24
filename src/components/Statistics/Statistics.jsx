@@ -1,16 +1,22 @@
 import { RatingList } from './Statistics.styled';
 
-export const Statistics = ({ rating, total, positivePercentage }) => {
+export const Statistics = ({
+  ratingGood,
+  ratingNeutral,
+  ratingBad,
+  total,
+  positivePercentage,
+}) => {
   return (
     <RatingList>
       <li>
-        <p>Good: {rating.good}</p>
+        <p>Good: {ratingGood}</p>
       </li>
       <li>
-        <p>Neutral: {rating.neutral}</p>
+        <p>Neutral: {ratingNeutral}</p>
       </li>
       <li>
-        <p>Bad: {rating.bad}</p>
+        <p>Bad: {ratingBad}</p>
       </li>
       <li>
         <p>Total: {total}</p>

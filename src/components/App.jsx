@@ -9,20 +9,41 @@ export const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-    const keys = Object.keys(this.state);
-    const total = countTotalFeedback();
-  const positivePercentage = this.countPositiveFeedbackPercentage();
-  
-    const countTotalFeedback = () => {
+  const reviews = ['good', 'neutral', 'bad'];
+
+  const handeleButtonClick = value => {
+    switch (value) {
+      case 'good':
+        setGood(state => state + 1);
+        break;
+      case 'neutral':
+        setNeutral(state => state + 1);
+        break;
+      case 'bad':
+        setBad(state => state + 1);
+        break;
+      default:
+        console.log('Invalid reviews type');
+    }
+  };
+
+  const countTotalFeedback = () => {
     return good + neutral + bad;
   };
+
+  const countPositiveFeedbackPercentage = () => {
+    return Math.round((good * 100) / countTotalFeedback());
+  };
+
+  const total = countTotalFeedback();
+  const positivePercentage = countPositiveFeedbackPercentage();
 
   return (
     <>
       <Section title="Please leave feedback">
         <FeedbackOptions
-          options={keys}
-          onLeaveFeedback={this.handeleButtonClick}
+          options={reviews}
+          onLeaveFeedback={handeleButtonClick}
         />
       </Section>
       <Section title="Statistics">
@@ -30,7 +51,9 @@ export const App = () => {
           <Notification message="There is no feedback" />
         ) : (
           <Statistics
-            rating={this.state}
+            ratingGood={good}
+            ratingNeutral={neutral}
+            ratingBad={bad}
             positivePercentage={positivePercentage}
             total={total}
           />
@@ -38,21 +61,4 @@ export const App = () => {
       </Section>
     </>
   );
-
-  // handeleButtonClick = value => {
-  //   this.setState(prevState => {
-  //     return {
-  //       [value]: prevState[value] + 1,
-  //     };
-  //   });
-  // };
-
-
-
-  // countPositiveFeedbackPercentage = () => {
-  //   return Math.round((this.state.good * 100) / this.countTotalFeedback());
-  // };
-
-
-
-
+};
