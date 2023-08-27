@@ -14,13 +14,13 @@ export const App = () => {
   const handeleButtonClick = value => {
     switch (value) {
       case 'good':
-        setGood(state => state + 1);
+        setGood(ps => ps + 1);
         break;
       case 'neutral':
-        setNeutral(state => state + 1);
+        setNeutral(ps => ps + 1);
         break;
       case 'bad':
-        setBad(state => state + 1);
+        setBad(ps => ps + 1);
         break;
       default:
         console.log('Invalid reviews type');
